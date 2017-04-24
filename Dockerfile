@@ -3,10 +3,12 @@ FROM alpine:3.4
 # Install kubectl
 # Note: Latest version may be found on:
 
-
-ADD https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl /usr/local/bin/kubectl
-
 ENV HOME=/config
+ENV VERSION=v1.6.2
+
+# for new versioncurl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt
+
+ADD https://storage.googleapis.com/kubernetes-release/release/$VERSION/bin/linux/amd64/kubectl /usr/local/bin/kubectl
 
 RUN set -x && \
     apk add --no-cache curl ca-certificates && \
@@ -19,5 +21,6 @@ RUN set -x && \
     kubectl version --client
 
 USER kubectl
+VOLUME /config
 
 ENTRYPOINT ["/usr/local/bin/kubectl"]
