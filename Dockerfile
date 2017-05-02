@@ -29,7 +29,7 @@ RUN set -x && \
     kubectl version --client
 
 #Add the config for the kubectl
-ADD ./config /config/.kube/config
+COPY ./config /config/.kube/config
 
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
