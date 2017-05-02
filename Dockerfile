@@ -28,13 +28,19 @@ RUN set -x && \
     # Basic check it works.
     kubectl version --client
 
+
 #Add the config for the kubectl
 COPY ./config /config/.kube/config
+
+RUN chown -R kubectl ./config
 
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 
-USER kubectl
+USER kubctl
+
+
+
 VOLUME /config
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
