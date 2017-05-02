@@ -37,7 +37,7 @@ RUN chown -R kubectl ./config
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 
-USER kubctl
+USER kubectl
 
 
 
