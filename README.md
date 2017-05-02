@@ -11,6 +11,38 @@ Forked from https://github.com/wernight/docker-kubectl
 
 `kubectl` is a CLI tool to control a cluster [Kubernetes](http://kubernetes.io/).
 
+
+## Runtime Parameters
+
+Only required if no config is mounted
+
+###CLUSTER_NAME
+
+The name of the cluster
+
+###CLUSTER_SERVER
+
+API url of the server
+
+###CLUSTER_CA
+
+CA cirtificate of the cluster
+
+###CLUSTER_USER
+
+User authenticating with the cluster
+###CLUSTER_TOKEN
+
+Toke for the user
+
+###CLUSTER_CLIENT_KEY
+
+The client key
+
+###CLUSTER_CLIENT_CA
+
+The client CA
+
 ## Usage
 
     $ docker run --rm wernight/kubectl --help

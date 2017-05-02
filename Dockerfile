@@ -6,8 +6,16 @@ FROM alpine:3.4
 ENV HOME=/config
 ENV VERSION=v1.6.2
 
-# for new versioncurl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt
+#Enviromental Variables
+#ENV CLUSTER_NAME = ""
+#ENV CLUSTER_SERVER = ""
+#ENV CLUSTER_CA = ""
+#ENV CLUSTER_USER = ""
+#ENV CLUSTER_TOKEN = ""
+#ENV CLUSTER_CLIENT_KEY = ""
+#ENV CLUSTER_CLIENT_CA = ""
 
+# for new versioncurl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt
 ADD https://storage.googleapis.com/kubernetes-release/release/$VERSION/bin/linux/amd64/kubectl /usr/local/bin/kubectl
 
 RUN set -x && \
@@ -20,7 +28,13 @@ RUN set -x && \
     # Basic check it works.
     kubectl version --client
 
+#Add the config for the kubectl
+ADD ./config /config/.kube/config
+
+COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
+
 USER kubectl
 VOLUME /config
 
-ENTRYPOINT ["/usr/local/bin/kubectl"]
+ENTRYPOINT ["/docker-entrypoint.sh"]
