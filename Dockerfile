@@ -6,14 +6,6 @@ FROM alpine:3.4
 ENV HOME=/config
 ENV VERSION=v1.6.2
 
-#Enviromental Variables
-#ENV CLUSTER_NAME = ""
-#ENV CLUSTER_SERVER = ""
-#ENV CLUSTER_CA = ""
-#ENV CLUSTER_USER = ""
-#ENV CLUSTER_TOKEN = ""
-#ENV CLUSTER_CLIENT_KEY = ""
-#ENV CLUSTER_CLIENT_CA = ""
 
 # for new versioncurl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt
 ADD https://storage.googleapis.com/kubernetes-release/release/$VERSION/bin/linux/amd64/kubectl /usr/local/bin/kubectl
@@ -39,8 +31,6 @@ RUN chmod +x /docker-entrypoint.sh
 
 USER kubectl
 
-
-
 VOLUME /config
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["/docker-entrypoint.sh"]
