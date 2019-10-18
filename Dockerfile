@@ -4,7 +4,7 @@ FROM alpine:3.4
 # Note: Latest version may be found on:
 
 ENV HOME=/config
-ENV VERSION=v1.6.2
+ENV VERSION=v1.14.8
 
 #Enviromental Variables
 #ENV CLUSTER_NAME = ""
